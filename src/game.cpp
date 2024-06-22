@@ -38,7 +38,7 @@ void game::render()
     
     //m_go.draw(_render);
     //m_player.draw(_render);
-
+    
     for(std::vector<gameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
     {
         m_gameObjects[i]->draw(_render);
@@ -58,17 +58,11 @@ void game::clean()
 
 void game::update()
 {
-            std::cout<<"penis";
-
-    //m_currentFrame = int((( SDL_GetTicks() / 100) % 6 ));
     for(std::vector<gameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
     {
         m_gameObjects[i]->update();
-        std::cout<<"penis";
     }
-    
-    //m_go->update();
-    //m_player->update();
+
 }
 
 bool game::init()
@@ -102,7 +96,7 @@ bool game::init()
         return false;
     }
 
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
 
     _render = SDL_CreateRenderer(_window, -1, rendererFlags);
 
@@ -113,26 +107,21 @@ bool game::init()
         return false;
     }
 
-    if(!_textureManager::Instance()->load("../resources/player.png", "player", _render)) 
-    {
+    if(!_textureManager::Instance()->load("../resources/player.png", "player", _render))
         return false;
-    }
 
     m_player = new Player();
-    //m_enemy1 = new Enemy();
-    //m_enemy2 = new Enemy();
-    //m_enemy3 = new Enemy();
-
+    m_go     = new gameObject();
+    m_enemy1 = new Enemy(); 
     
+    m_enemy1->load(50, 50, 16, 16, "player");
     m_go->load(200, 200, 16, 16, "player");
     m_player->load(300, 300, 16, 16, "player");
 
+    m_gameObjects.push_back(m_enemy1);
     m_gameObjects.push_back(m_player);
     m_gameObjects.push_back(m_go);
-    //m_gameObjects.push_back(m_enemy1);
-    //m_gameObjects.push_back(m_enemy2);
-    //m_gameObjects.push_back(m_enemy3);
-
+    
     return true;
 }
 

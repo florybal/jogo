@@ -8,6 +8,7 @@
 #include "include.h"
 #include "textureManager.h"
 #include "player.h"
+#include "enemy.h"
 #include "gameObjects.h"
 
 
@@ -28,8 +29,8 @@ private:
 private:
 
   gameObject* m_go;
-  gameObject*  m_player; 
-  //gameObject* m_enemy1;
+  gameObject* m_player; 
+  gameObject* m_enemy1;
   //gameObject* m_enemy2;
   //gameObject* m_enemy3;
 
